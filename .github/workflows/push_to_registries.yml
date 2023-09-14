@@ -61,8 +61,11 @@ jobs:
         run: |
           GIT_COMMIT_HASH=`git log -n 1 --pretty=format:'%h' --abbrev=7`
           BRANCH=`git branch`
-          echo `${BRANCH} ${GIT_COMMIT_HASH}`
-          docker build . --tag `ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}`
-          docker run `ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}`
-          docker push `ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}`
+          echo "${{BRANCH}} ${{GIT_COMMIT_HASH}}"
+          # docker build . --tag "ghcr.io/chenghsienwen/scala-webapp-template-${{BRANCH}}:$GIT_COMMIT_HASH}}"
+          # docker run "ghcr.io/chenghsienwen/scala-webapp-template-${{BRANCH}}:$GIT_COMMIT_HASH}}"
+          # docker push "ghcr.io/chenghsienwen/scala-webapp-template-${{BRANCH}}:$GIT_COMMIT_HASH}}"
+          docker build . --tag ghcr.io/chenghsienwen/scala-webapp-template:latest
+          docker run ghcr.io/chenghsienwen/scala-webapp-template:latest
+          docker push ghcr.io/chenghsienwen/scala-webapp-template:latest
         shell: bash

@@ -51,17 +51,19 @@ jobs:
 
       - name: Prepare server build
         run: sbt server/dist
+
       - name: Login to GitHub Container Registry
         use: docker/login-action@v1
         with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push image
         run: |
-            GIT_COMMIT_HASH=`git log -n 1 --pretty=format:'%h' --abbrev=7`
-            BRANCH=`git branch`
-            docker build . --tag ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}
-            docker run ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}
-            docker push ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}
+          GIT_COMMIT_HASH=`git log -n 1 --pretty=format:'%h' --abbrev=7`
+          BRANCH=`git branch`
+          docker build . --tag ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}
+          docker run ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}
+          docker push ghcr.io/chenghsienwen/scala-webapp-template-${BRANCH}:${GIT_COMMIT_HASH}
         shell: bash

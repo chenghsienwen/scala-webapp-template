@@ -1,7 +1,7 @@
 name: Build and publish the app
 
 on:
-  push_to_registries:
+  push:
     branches: [ master ]
 
 concurrency:

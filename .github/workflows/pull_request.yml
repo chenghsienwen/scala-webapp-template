@@ -15,8 +15,7 @@ permissions:
   contents: read # for checkout
 
 jobs:
-  build-publish-image:
-
+  push_to_registries:
     runs-on: ubuntu-latest
 
     steps:

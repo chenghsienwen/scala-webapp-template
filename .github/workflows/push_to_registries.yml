@@ -13,7 +13,7 @@ permissions:
   contents: read # for checkout
 
 jobs:
-  push_to_registries:
+  build:
     runs-on: ubuntu-latest
 
     steps:

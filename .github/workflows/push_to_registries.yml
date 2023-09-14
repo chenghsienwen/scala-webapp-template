@@ -1,9 +1,7 @@
-name: Build the app
+name: Build and publish the app
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
+  push_to_registries:
     branches: [ master ]
 
 concurrency:
